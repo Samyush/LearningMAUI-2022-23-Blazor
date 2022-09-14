@@ -1,0 +1,47 @@
+﻿@page "/notes"
+
+@using LearningMAUI_2022_23_Blazor.Data
+
+<h3>Notes</h3>
+
+<div class="danger">
+  <p><strong>Danger!</strong> Some text...</p>
+</div>
+
+<div class="success">
+  <p><strong>Success!</strong> Some text...</p>
+</div>
+
+<div class="info">
+  <p><strong>Info!</strong> Some text...</p>
+</div>
+
+<div class="warning">
+  <p><strong>Warning!</strong> Some text...</p>
+</div>
+
+<EditForm Model=@theModels OnSubmit="main">
+  <label for="fname">Note 1:</label><br>
+ <InputText id="Name" @bind-Value="theModels.Data" class="form-control"></InputText>
+  @*<label for="lname">Note2:</label><br>
+  <input type="text" id="lname" name="lname" value="Fun Stuff"><br><br>*@
+  <input type="submit" value="Submit" >
+  <input type="reset">
+</EditForm>
+<button @onclick="main">Testing</button>
+
+@code {
+    string _filePath = "C:\\#Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\notes.txt";
+    string data = "data";
+
+    public class TheModels{
+        public string Data { get; set; }
+    }
+
+    TheModels theModels = new();
+
+    public void main(){
+        WriteToFileServices writeToFileServices = new(theModels.Data, _filePath);
+        //WriteToFileServices writeToFileServices = new(data, _filePath);
+    }
+}
