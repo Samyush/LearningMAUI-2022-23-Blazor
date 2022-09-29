@@ -28,9 +28,11 @@
     <input type="submit" value="Submit" @onclick="main" >
     <input type="reset">
 </EditForm>
+<br />
+<br />
 
 <p role="status">Current count: @currentCount</p>
-
+this button down here wont save data
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
@@ -44,7 +46,7 @@
     public void main()
     {
         WriteToCsv.WriteDataToCsv(toDoModel, _filePath);
-        WriteToCsv.Wr2(toDoModel, _filePath2);
+        WriteToCsv.WriteToCsvNewLine(toDoModel, _filePath2);
     }
 
     private void IncrementCount()

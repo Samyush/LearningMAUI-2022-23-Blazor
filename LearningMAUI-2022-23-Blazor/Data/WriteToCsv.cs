@@ -25,7 +25,9 @@ namespace LearningMAUI_2022_23_Blazor.Data
             Console.WriteLine("Success");
         }
 
-        public static void Wr2(ToDoModel data, string path)
+
+        //this method is designed to write in new line
+        public static void WriteToCsvNewLine(ToDoModel data, string path)
         {
             var csv = new StringBuilder();
 
