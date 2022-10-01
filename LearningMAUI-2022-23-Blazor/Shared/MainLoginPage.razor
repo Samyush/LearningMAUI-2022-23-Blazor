@@ -1,0 +1,53 @@
+﻿<h3 class="text-white-50">WELCOME TO APP</h3>
+
+<button class="btn btn-primary align-content-center" @onclick="clicker">Log - In </button>
+<br />
+<br />
+<button class="btn btn-primary align-content-center" @onclick="falseClicker">Log Out</button>
+
+@if (login == true)
+{
+    <NavMenu />
+}else{
+    <P>your password is wrong</P>
+}
+
+
+@code {
+    bool login;
+    void clicker(){
+        login = true;
+    }
+    void falseClicker()
+    {
+        login = false;
+    }
+}
+
+@*logical task => to make the same button work as logout and login*@
+@*
+<h3>MainLoginPage</h3>
+
+<button class="btn btn-primary" @onclick="clicker">Click me To Next Page</button>
+
+@if (IncrementCount() == true)
+{
+    <NavMenu />
+}else{
+    <P>your password is wrong</P>
+}
+
+
+@code {
+
+
+    private bool IncrementCount()
+    {
+        return false;
+    }
+
+    void clicker(){
+        IncrementCount();
+    }
+}
+*@

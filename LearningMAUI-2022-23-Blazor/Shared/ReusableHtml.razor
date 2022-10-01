@@ -1,12 +1,32 @@
 <div class="alert alert-secondary mt-4">
     <span class="oi oi-pencil me-2" aria-hidden="true"></span>
-    <strong>@Title</strong>
+   <div class="warning">
+        <strong>@Title</strong>
 
-    <span class="text-nowrap">
-        "Right from here is the reusable HTML code and 
-        <a target="_blank" class="font-weight-bold link-dark" href="https://go.microsoft.com/fwlink/?linkid=2188693">this is a link</a>
-    </span>
-    , This code is at Shared folder and named as ReusableHtml.razor."
+        <span class="text-nowrap">
+            "Here we add a login form
+            <a target="_blank" class="font-weight-bold link-dark" href="https://go.microsoft.com/fwlink/?linkid=2188693">this is a link</a>
+        </span>
+        , This code is at Shared folder and named as ReusableHtml.razor."
+   </div>
+
+    <br />
+    <div class="success">
+        <a> USER NAME : ____________________</a>
+        <br />
+        <a>PASSWORD : ____________________</a>
+
+        <br />
+        <br />
+        @*<button class="btn btn-primary" @onclick="clicker">Click me To LOGIN</button>
+
+        @if (login == true)
+        {
+            <NavMenu />
+        }else{
+            <P>your password is wrong</P>
+        }*@
+    </div>
 </div>
 
 @code {
@@ -14,3 +34,5 @@
     [Parameter]
     public string Title { get; set; }
 }
+
+
