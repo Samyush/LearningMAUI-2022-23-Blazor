@@ -4,6 +4,8 @@
 <h1>Add To:Do tasks</h1>
 <p>this page is to add task and binds with task model and save to csv</p>
 
+<div alert alert-secondary mt-4>
+
 <EditForm Model=@toDoModel>
     <label for="fname">Task Name:</label><br>
     <InputText id="Name" @bind-Value=toDoModel.Name class="form-control"></InputText>
@@ -11,23 +13,25 @@
         <label for="lname">Note2:</label><br>
     <input type="text" id="lname" name="lname" value="Fun Stuff">
     *@
-    <br><br>
+    <br>
 
     <label for="fname">Task Description:</label><br>
     <InputText id="Name" @bind-Value=toDoModel.Description class="form-control"></InputText>
-    <br><br>
+    <br>
 
     <label for="fname">Task Date:</label><br>
     <InputText id="Name" @bind-Value=toDoModel.TaskDate class="form-control"></InputText>
-    <br><br>
+    <br>
 
     <label for="fname">Task Type:</label><br>
     <InputText id="Name" @bind-Value=toDoModel.TaskType class="form-control"></InputText>
-    <br><br>
+    <br>
 
     <input type="submit" value="Submit" @onclick="main" >
     <input type="reset">
 </EditForm>
+
+</div>
 <br />
 <br />
 
@@ -37,16 +41,16 @@ this button down here wont save data
 
 @code {
     private int currentCount = 0;
-    string _filePath = "C:\\#Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\todo.csv";
-    string _filePath2 = "C:\\#Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\todo2.csv";
+    string _filePath = "C:\\Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\todo.csv";
+    string _filePath2 = "C:\\Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\todo2.csv";
 
 
     ToDoModel toDoModel = new();
 
     public void main()
     {
-        WriteToCsv.WriteDataToCsv(toDoModel, _filePath);
-        WriteToCsv.WriteToCsvNewLine(toDoModel, _filePath2);
+        Write_ReadToCsv.WriteDataToCsv(toDoModel, _filePath);
+        Write_ReadToCsv.WriteToCsvNewLine(toDoModel, _filePath2);
     }
 
     private void IncrementCount()

@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 
 @using LearningMAUI_2022_23_Blazor.Data
+@using LearningMAUI_2022_23_Blazor.Data.Models
 @inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
@@ -16,20 +17,20 @@ else
 	<table class="table">
 		<thead>
 			<tr>
+				<th>Task Name</th>
+				<th>Task Description</th>
 				<th>Task Date</th>
-				<th>Task Number</th>
-				<th>Task</th>
-				<th>Difficulty</th>
+				<th>Task Type</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var forecast in forecasts)
+			@foreach (var forecast in data)
 			{
 				<tr>
-					<td>@forecast.Date.ToShortDateString()</td>
-					<td>@forecast.TemperatureC</td>
-					<td>@forecast.TemperatureF</td>
-					<td>@forecast.Summary</td>
+					<td>@forecast.Name</td>
+					<td>@forecast.Description</td>
+					<td>@forecast.TaskDate</td>
+					<td>@forecast.TaskType</td>
 				</tr>
 			}
 		</tbody>
@@ -37,10 +38,15 @@ else
 }
 
 @code {
-	private WeatherForecast[] forecasts;
+    private WeatherForecast[] forecasts;
+	List<ToDoModel> data;
 
-	protected override async Task OnInitializedAsync()
-	{
-		forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    Write_ReadToCsv write_ReadToCsv = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        data = await Write_ReadToCsv.ExportCsvData();
+        Write_ReadToCsv.ReadToCsvAsync();
 	}
 }
