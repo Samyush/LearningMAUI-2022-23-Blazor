@@ -1,5 +1,5 @@
 ﻿@page "/notes"
-
+@inject ISnackbar Snackbar
 @using LearningMAUI_2022_23_Blazor.Data
 
 <h3>Notes</h3>
@@ -32,9 +32,9 @@
 both the buttons work to save data
 <br />
 <button @onclick="main">Testing</button>
-
+<MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => Snackbar.Add("The reactor type is RBMK-1000", Severity.Normal))">Normal Snackbar</MudButton>
 @code {
-    string _filePath = "C:\\Development\\.Net\\Islington\\LearningMAUI-2022-23-Blazor\\notes.txt";
+    string _filePath = "D:\\notes.txt";
 
     public class TheModels{
         public string Data { get; set; }
@@ -43,7 +43,17 @@ both the buttons work to save data
     TheModels theModels = new();
 
     public void main(){
-        WriteToFileServices writeToFileServices = new(theModels.Data, _filePath);
-        //WriteToFileServices writeToFileServices = new(data, _filePath);
+        try
+        {
+            if (theModels.Data==null) {
+                throw new Exception();
+            }
+            WriteToFileServices writeToFileServices = new(theModels.Data, _filePath);
+            Snackbar.Add("Note Sucessfully Added", Severity.Success);
+            //WriteToFileServices writeToFileServices = new(data, _filePath);
+        }
+        catch { 
+            Snackbar.Add("Note Could not Added", Severity.Warning);
+        }
     }
 }
